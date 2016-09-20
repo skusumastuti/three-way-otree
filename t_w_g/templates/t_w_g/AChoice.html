@@ -1,0 +1,21 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Round {{ round_number }} of {{ total_rounds }}
+{% endblock %}
+
+{% block content %}
+
+    {% include 't_w_g/Ainstr.html' %}
+
+<p>
+    You are playing as <strong>{{ player.role }}</strong>.
+</p>
+
+{% formfield group.a_choice with label='Please choose your action' %}
+
+    {% next_button %}
+
+
+{% endblock %}

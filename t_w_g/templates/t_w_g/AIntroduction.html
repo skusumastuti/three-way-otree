@@ -1,0 +1,20 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Introduction
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        {% include 't_w_g/Ainstr.html' %}
+    </p>
+
+    <p>There are {{total_rounds}} rounds in this game. You will be paid ${{participation}} as a participation fee and an additional bonus depending on your performance. We will select the outcomes of {{paid_rounds}} rounds out of {{total_rounds}} as your bonus payoff. If the bonus amount is less than ${{minimal_bonus}}, your bonus will be ${{minimal_bonus}}.</p>
+
+<p>Click the next button below to start the game</p>
+
+    {% next_button %}
+
+{% endblock %}
