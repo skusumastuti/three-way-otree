@@ -1,0 +1,11 @@
+{% extends "global/Instructions.html" %}
+{% load staticfiles otree_tags %}
+
+{% block instructions %}
+    
+    <p>You are participating in a three way cybersecuritygame with attackers, defenders and users. You have been randomly chosen to play as the <strong>attacker</strong>. The outcome of each round depends on the combination of each of the players' decisions.</p>
+	
+	<p>Here are the choices you are presented with. The cost, probabilities, and payoff/reward are included in the table below.
+	<img src="{% static "t_w_g_ud/attacker.png" %}"/>
+	
+{% endblock %}

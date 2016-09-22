@@ -65,6 +65,10 @@ class Constants(BaseConstants):
     UCostHS = c(1.4)
     UCostLS = c(0)
 
+    a_instr = 't_w_g_intro/Ainstr.html'
+    d_instr = 't_w_g_intro/Dinstr.html'
+    u_instr = 't_w_g_intro/Uinstr.html'
+
     success_msg = 'attack successful'
     fail_msg = 'attack failed'
     no_atk_msg = 'no attack'

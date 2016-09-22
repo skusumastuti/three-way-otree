@@ -1,0 +1,44 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results Summary
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        This is a summary of the rounds played. You played as <strong>{{ player.role }}</strong>.
+    </p>
+
+    <table class="table" style="margin-top:20px;">
+        <tr>
+            <th>Round</th>
+            <th>Attacker Choice</th>
+            <th>Defender Choice</th>
+            <th>User Choice</th>
+            <th>Outcome</th>
+            <th>Cost</th>
+            <th>Your Payoff</th>
+        </tr>
+        {% for g in group_in_all_rounds %}
+            <tr>
+                <td>{{ g.subsession.round_number }}</td>
+                <td>{{ g.a_choice }}</td>
+                <td>{{ g.d_choice }}</td>
+                <td>{{ g.u_choice }}</td>
+                <td>{{ g.message }}</td>
+                <td>{% if player.role == 'attacker' %} {{g.a_cost}} {% elif player.role == 'defender' %} {{g.d_cost}} {% elif player.role == 'user' %} {{g.u_cost}} {% endif %}</td>
+                <td>{% if player.role == 'attacker' %} {{g.a_pay}} {% elif player.role == 'defender' %} {{g.d_pay}} {% elif player.role == 'user' %} {{g.u_pay}} {% endif %}</td>
+                {% endfor %}
+
+            </tr>
+
+    </table>
+
+    <p>These rounds are randomly selected to obtain your bonus:{% for round in paying_rounds %} {{round}}{% endfor %}. Your bonus is {% if player.role == 'attacker' %} {{a_total}}{% elif player.role == 'defender' %} {{d_total}}{% elif player.role == 'user' %} {{u_total}}{% endif %}. If you obtained less than $1, you will be paid $1 as your bonus.</p>
+
+    {% next_button %}
+
+{% endblock %}
+
