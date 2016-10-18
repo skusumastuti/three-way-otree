@@ -111,7 +111,7 @@ SESSION_CONFIG_DEFAULTS = {
 SESSION_CONFIGS = [
     {
         'name': 'three_way',
-       'display_name': "Three Way Game",
+       'display_name': "Three Way Cyber Security Game",
        'num_demo_participants': 3,
        'app_sequence': ['t_w_g_intro','t_w_g'],
     },

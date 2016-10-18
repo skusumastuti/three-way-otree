@@ -57,7 +57,7 @@ class CustomWait(WaitPage):
 
     def vars_for_template(self):
         return { "alt_title_text":"Please wait while other participants arrive. Once enough have accepted the HIT, a chime will sound if you have autoplay enabled for audio. If you would like a browser notification when it is time to begin, please granted this site permission to send you a notification.",
-                "body_text":"Once the experiments begins, the whole process should take less than 8 minutes."
+                "body_text":"Once the experiments begins, the whole process should take less than 30 minutes."
                 }
     wait_for_all_groups = True
 
