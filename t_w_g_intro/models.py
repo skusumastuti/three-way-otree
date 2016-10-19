@@ -128,7 +128,7 @@ class Group(BaseGroup):
         verbose_name='Please select your action', doc = """User choice""",
         widget=widgets.RadioSelect())
 
-    p_success = models.FloatField()
+    p_success = models.FloatField(default=0)
 
     atk_success = models.BooleanField(
         doc="""Whether an attack was successful"""

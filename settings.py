@@ -54,7 +54,7 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 
 # e.g. EUR, CAD, GBP, CHF, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'USD'
-USE_POINTS = True
+USE_POINTS = False
 
 
 # e.g. en, de, fr, it, ja, zh-hans
@@ -78,8 +78,8 @@ oTree games
 # https://boto.readthedocs.org/en/latest/ref/mturk.html?highlight=mturk#module-boto.mturk.qualification
 
 mturk_hit_settings = {
-    'keywords': ['easy', 'bonus', 'choice', 'study'],
-    'title': 'Title for your experiment',
+    'keywords': ['multiplayer', 'strategy', 'choice', 'study','cyber security'],
+    'title': 'Multiplayer Cyber Security Game',
     'description': 'Description for your experiment',
     'frame_height': 500,
     'preview_template': 'global/MTurkPreview.html',
@@ -101,7 +101,7 @@ mturk_hit_settings = {
 
 SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 0.01,
-    'participation_fee': 10.00,
+    'participation_fee': 1.00,
     'num_bots': 6,
     'doc': "",
     'mturk_hit_settings': mturk_hit_settings,

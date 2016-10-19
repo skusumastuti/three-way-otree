@@ -103,7 +103,7 @@ class Group(BaseGroup):
         verbose_name='Please select your action', doc = """User choice""",
         widget=widgets.RadioSelect())
 
-    p_success = models.FloatField()
+    p_success = models.FloatField(default=0)
 
     atk_success = models.BooleanField(
         doc="""Whether an attack was successful"""
@@ -155,15 +155,6 @@ class Group(BaseGroup):
             self.u_cost = Constants.UCostLS
         elif self.u_choice == 'Enhanced Security':
             self.u_cost = Constants.UCostHS
-
-        """if self.a_choice == 'Attack Defender':
-            attacker.payoff = c(1)
-            defender.payoff = c(2)
-            user.payoff = c(3)
-        elif self.a_choice == 'No Attack':
-            attacker.payoff = c(7)
-            defender.payoff = c(8)
-            user.payoff = c(9)"""
 
         if self.a_choice == 'Attack Defender':
             if self.d_choice == 'Standard Security':
