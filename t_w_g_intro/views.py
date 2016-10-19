@@ -331,6 +331,15 @@ class Answer4(Page):
 
 
 page_sequence = [
+    CustomWait,
+    Infosheet,
+    No,
+    Introduction1,
+    Introduction2,
+    Introduction3,
+    Introduction4,
+    Introduction5,
+    Introduction6,
     AChoice,
     DChoice,
     UChoice,
