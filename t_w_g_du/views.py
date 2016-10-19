@@ -134,6 +134,15 @@ class FinalResults(Page):
     timeout_seconds = 120
 
 
+class Feedback(Page):
+
+    def is_displayed(self):
+        return self.subsession.round_number == Constants.num_rounds
+
+    form_model = models.Player
+    form_fields = ['turk_id','diff','clear','comment','timing_instr','timing_dec','timing_res']
+
+
 page_sequence = [
     AChoice,
     UChoice,
@@ -141,5 +150,6 @@ page_sequence = [
     DChoice,
     ResultsWaitPage,
     Results,
-    FinalResults
+    FinalResults,
+    Feedback
 ]

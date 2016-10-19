@@ -223,6 +223,61 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+
+    turk_id = models.CharField(verbose_name='Please enter your Mechanical Turk ID', widget=widgets.TextInput())
+
+    clear = models.PositiveIntegerField(choices=[
+        [1,'Very clear'],
+        [2,'Somewhat clear'],
+        [3,'Neither clear nor unclear'],
+        [4,'Somewhat unclear'],
+        [5,'Very unclear']
+        ],
+        verbose_name='How clear were the instructions to play the game?',
+        widget=widgets.RadioSelectHorizontal())
+
+    timing_instr = models.PositiveIntegerField(choices=[
+        [1,'Very long'],
+        [2,'Somewhat long'],
+        [3,'Just right'],
+        [4,'Somewhat short'],
+        [5,'Very short'],
+        ],
+        verbose_name='How was the allocated timing to read the instructions? i.e. Did you have enough time to read the instructions before the page automatically forwards?',
+        widget=widgets.RadioSelectHorizontal())
+
+    timing_dec = models.PositiveIntegerField(choices=[
+        [1,'Very fast'],
+        [2,'Somewhat fast'],
+        [3,'Just right'],
+        [4,'Somewhat slow'],
+        [5,'Very slow']
+        ],
+        verbose_name='How was the allocated timing for the decision making page? (The page each round that asks for your decision) i.e. Did you have enough time to make an informed decision before the page automatically forwards?',
+        widget=widgets.RadioSelectHorizontal())
+
+    timing_res = models.PositiveIntegerField(choices=[
+        [1,'Very fast'],
+        [2,'Somewhat fast'],
+        [3,'Just right'],
+        [4,'Somewhat slow'],
+        [5,'Very slow']
+        ],
+        verbose_name='How was the allocated timing for the page displaying the results of the game? (The page that shows the outcome for each round) i.e. Did you have enough time to read the results of each round before the page automatically forwards?',
+        widget=widgets.RadioSelectHorizontal())
+
+    diff = models.PositiveIntegerField(choices=[
+        [1,'Very easy'],
+        [2,'Somewhat easy'],
+        [3,'Neither easy nor difficult'],
+        [4,'Somewhat difficult'],
+        [5,'Very difficult']
+         ],
+        verbose_name='How easy was it to understand the goal of the game?',
+        widget=widgets.RadioSelectHorizontal())
+
+    comment = models.CharField(verbose_name='Please write any comments or suggestions about the game', widget=widgets.Textarea())
+
     def role(self):
         if self.id_in_group == 1:
             return 'attacker'
