@@ -174,6 +174,7 @@ class Group(BaseGroup):
             self.no_atk = True
             self.p_success = 0
 
+
         rand=random.random()
         if self.a_choice == 'No Attack':
             self.message = Constants.no_atk_msg

@@ -41,21 +41,21 @@ class Constants(BaseConstants):
     APayoff_UseS = c(1)
     APayoff_UseF = c(0)
     APayoff_No = c(0)
-    DPayoff_DefS = c(-2)
-    DPayoff_DefF = c(3)
-    DPayoff_UseS = c(-0.5)
-    DPayoff_UseF = c(2)
-    DPayoff_No = c(1)
+    DPayoff_DefS = c(-1.5)
+    DPayoff_DefF = c(2.5)
+    DPayoff_UseS = c(-1)
+    DPayoff_UseF = c(1)
+    DPayoff_No = c(0.5)
     UPayoff_DefS = c(0)
     UPayoff_DefF = c(0)
-    UPayoff_UseS = c(-0.5)
-    UPayoff_UseF = c(3)
+    UPayoff_UseS = c(-1.5)
+    UPayoff_UseF = c(2.5)
     UPayoff_No = c(0.5)
-    ACostD = c(2)
-    ACostU = c(0.5)
+    ACostD = c(3)
+    ACostU = c(1)
     ACostNo = c(0)
     DCostHS = c(2)
-    DCostLS = c(0.5)
+    DCostLS = c(0.8)
     UCostHS = c(1.4)
     UCostLS = c(0)
 
@@ -99,7 +99,7 @@ class Group(BaseGroup):
         verbose_name='Please select your action', doc = """User choice""",
         widget=widgets.RadioSelect())
 
-    p_success = models.FloatField()
+    p_success = models.FloatField(default=0)
 
     atk_success = models.BooleanField(
         doc="""Whether an attack was successful"""
@@ -122,6 +122,10 @@ class Group(BaseGroup):
     a_cum = models.CurrencyField()
     d_cum = models.CurrencyField()
     u_cum = models.CurrencyField()
+
+    a_skipped = models.BooleanField()
+    d_skipped = models.BooleanField()
+    u_skipped = models.BooleanField()
 
     def set_payoffs(self):
 
@@ -147,15 +151,6 @@ class Group(BaseGroup):
             self.u_cost = Constants.UCostLS
         elif self.u_choice == 'Enhanced Security':
             self.u_cost = Constants.UCostHS
-
-        """if self.a_choice == 'Attack Defender':
-            attacker.payoff = c(1)
-            defender.payoff = c(2)
-            user.payoff = c(3)
-        elif self.a_choice == 'No Attack':
-            attacker.payoff = c(7)
-            defender.payoff = c(8)
-            user.payoff = c(9)"""
 
         if self.a_choice == 'Attack Defender':
             if self.d_choice == 'Standard Security':
@@ -213,9 +208,18 @@ class Group(BaseGroup):
         self.u_pay = user.payoff
 
         if self.subsession.round_number in self.session.vars['paying_rounds']:
-            self.a_cum = attacker.payoff
-            self.d_cum = defender.payoff
-            self.u_cum = user.payoff
+            if self.a_skipped:
+                self.a_cum = 0
+            else:
+                self.a_cum = attacker.payoff
+            if self.d_skipped:
+                self.d_cum = 0
+            else:
+                self.d_cum = defender.payoff
+            if self.u_skipped:
+                self.u_cum = 0
+            else:
+                self.u_cum = user.payoff
         else:
             self.a_cum = 0
             self.d_cum = 0

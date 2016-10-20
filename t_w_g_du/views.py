@@ -26,6 +26,9 @@ class WaitIntroPage(WaitPage):
 
     wait_for_all_groups = True
 
+    def is_displayed(self):
+        return self.subsession.round_number == 1
+
 
 class AChoice(Page):
 
@@ -35,12 +38,14 @@ class AChoice(Page):
     form_model = models.Group
     form_fields = ['a_choice']
 
-    timeout_seconds = 60
+    timeout_seconds = 45
 
     def before_next_page(self):
         if self.timeout_happened:
             self.group.a_choice = random.choice(['Attack Defender','Attack User','No Attack'])
-            self.group.att_rand = True
+            self.group.a_skipped = True
+        else:
+            self.group.a_skipped = False
 
 
 class UChoice(Page):
@@ -51,12 +56,14 @@ class UChoice(Page):
     form_model = models.Group
     form_fields = ['u_choice']
 
-    timeout_seconds = 60
+    timeout_seconds = 45
 
     def before_next_page(self):
         if self.timeout_happened:
             self.group.u_choice = random.choice(['Standard Security','Enhanced Security'])
-            self.group.user_rand = True
+            self.group.u_skipped = True
+        else:
+            self.group.u_skipped = False
 
 
 class DWait(WaitPage):
@@ -77,12 +84,15 @@ class DChoice(Page):
     form_model = models.Group
     form_fields = ['d_choice']
 
-    timeout_seconds = 60
+    timeout_seconds = 45
 
     def before_next_page(self):
         if self.timeout_happened:
             self.group.d_choice = random.choice(['Standard Security','Enhanced Security'])
-            self.group.def_rand = True
+            self.group.d_skipped = True
+        else:
+            self.group.d_skipped = False
+
 
 
 class ResultsWaitPage(WaitPage):
@@ -107,6 +117,8 @@ class Results(Page):
             'result': self.group.message,
             'payoff': self.player.payoff
         }
+
+    timeout_seconds = 40
 
 
 class FinalResults(Page):
