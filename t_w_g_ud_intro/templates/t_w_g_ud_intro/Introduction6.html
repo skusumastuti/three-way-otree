@@ -1,0 +1,29 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Introduction - Page 6 of 6
+{% endblock %}
+
+{% block content %}
+
+<p>The table below illustrates the possible combinations of player choices as well as the probabilities of success and your payoff. The rows represent each combination of the choices of your adversaries. The columns represent the possible results based on your choice</p>
+
+<p>You do not need to memorize this table. It will be included in the subsequent pages.</p>
+
+        <p>{% if player.role == 'attacker' %}
+            <img src="{% static "t_w_g_intro/attacker.png" %}"/>
+        {% elif player.role == 'defender' %}
+            <img src="{% static "t_w_g_intro/defender.png" %}"/>
+        {% elif player.role == 'user' %}
+            <img src="{% static "t_w_g_intro/usr.png" %}"/>
+        {% endif %}
+        </p>
+
+
+
+<p>Click the button below to start the practice rounds</p>
+
+    {% next_button %}
+
+{% endblock %}

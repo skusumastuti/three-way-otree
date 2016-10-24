@@ -94,7 +94,6 @@ class DChoice(Page):
             self.group.d_skipped = False
 
 
-
 class ResultsWaitPage(WaitPage):
 
     body_text = "Waiting for the other participants to decide."

@@ -41,21 +41,21 @@ class Constants(BaseConstants):
     APayoff_UseS = c(1)
     APayoff_UseF = c(0)
     APayoff_No = c(0)
-    DPayoff_DefS = c(-2)
-    DPayoff_DefF = c(3)
-    DPayoff_UseS = c(-0.5)
-    DPayoff_UseF = c(2)
-    DPayoff_No = c(1)
+    DPayoff_DefS = c(-1.5)
+    DPayoff_DefF = c(2.5)
+    DPayoff_UseS = c(-1)
+    DPayoff_UseF = c(1)
+    DPayoff_No = c(0.5)
     UPayoff_DefS = c(0)
     UPayoff_DefF = c(0)
-    UPayoff_UseS = c(-0.5)
-    UPayoff_UseF = c(3)
+    UPayoff_UseS = c(-1.5)
+    UPayoff_UseF = c(2.5)
     UPayoff_No = c(0.5)
-    ACostD = c(2)
-    ACostU = c(0.5)
+    ACostD = c(3)
+    ACostU = c(1)
     ACostNo = c(0)
     DCostHS = c(2)
-    DCostLS = c(0.5)
+    DCostLS = c(0.8)
     UCostHS = c(1.4)
     UCostLS = c(0)
 
@@ -69,37 +69,35 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-
     def before_session_starts(self):
         if self.round_number == 1:
-            paying_rounds = random.sample(range(1,Constants.num_rounds), Constants.paid_rounds)
+            paying_rounds = random.sample(range(1, Constants.num_rounds), Constants.paid_rounds)
             self.session.vars['paying_rounds'] = paying_rounds
 
 
 class Group(BaseGroup):
-
     # attacker
     a_choice = models.CharField(choices=[
         'Attack Defender',
         'Attack User',
         'No Attack'],
-        verbose_name='Please select your action', doc = """Attacker choice""",
+        verbose_name='Please select your action', doc="""Attacker choice""",
         widget=widgets.RadioSelect())
     # defender
     d_choice = models.CharField(choices=[
         'Standard Security',
         'Enhanced Security'],
-        verbose_name='Please select your action', doc = """Defender choice""",
+        verbose_name='Please select your action', doc="""Defender choice""",
         widget=widgets.RadioSelect())
 
     # user
     u_choice = models.CharField(choices=[
         'Standard Security',
         'Enhanced Security'],
-        verbose_name='Please select your action', doc = """User choice""",
+        verbose_name='Please select your action', doc="""User choice""",
         widget=widgets.RadioSelect())
 
-    p_success = models.FloatField()
+    p_success = models.FloatField(default=0)
 
     atk_success = models.BooleanField(
         doc="""Whether an attack was successful"""
@@ -123,13 +121,17 @@ class Group(BaseGroup):
     d_cum = models.CurrencyField()
     u_cum = models.CurrencyField()
 
+    a_skipped = models.BooleanField()
+    d_skipped = models.BooleanField()
+    u_skipped = models.BooleanField()
+
     def set_payoffs(self):
 
         attacker = self.get_player_by_role('attacker')
         defender = self.get_player_by_role('defender')
         user = self.get_player_by_role('user')
 
-        #rand=random.random()
+        # rand=random.random()
 
         if self.a_choice == 'Attack Defender':
             self.a_cost = Constants.ACostD
@@ -147,15 +149,6 @@ class Group(BaseGroup):
             self.u_cost = Constants.UCostLS
         elif self.u_choice == 'Enhanced Security':
             self.u_cost = Constants.UCostHS
-
-        """if self.a_choice == 'Attack Defender':
-            attacker.payoff = c(1)
-            defender.payoff = c(2)
-            user.payoff = c(3)
-        elif self.a_choice == 'No Attack':
-            attacker.payoff = c(7)
-            defender.payoff = c(8)
-            user.payoff = c(9)"""
 
         if self.a_choice == 'Attack Defender':
             if self.d_choice == 'Standard Security':
@@ -175,7 +168,7 @@ class Group(BaseGroup):
             self.no_atk = True
             self.p_success = 0
 
-        rand=random.random()
+        rand = random.random()
         if self.a_choice == 'No Attack':
             self.message = Constants.no_atk_msg
             attacker.payoff = Constants.APayoff_No
@@ -213,9 +206,18 @@ class Group(BaseGroup):
         self.u_pay = user.payoff
 
         if self.subsession.round_number in self.session.vars['paying_rounds']:
-            self.a_cum = attacker.payoff
-            self.d_cum = defender.payoff
-            self.u_cum = user.payoff
+            if self.a_skipped:
+                self.a_cum = 0
+            else:
+                self.a_cum = attacker.payoff
+            if self.d_skipped:
+                self.d_cum = 0
+            else:
+                self.d_cum = defender.payoff
+            if self.u_skipped:
+                self.u_cum = 0
+            else:
+                self.u_cum = user.payoff
         else:
             self.a_cum = 0
             self.d_cum = 0
@@ -223,6 +225,61 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    turk_id = models.CharField(verbose_name='Please enter your Mechanical Turk ID', widget=widgets.TextInput())
+
+    clear = models.PositiveIntegerField(choices=[
+        [1, 'Very clear'],
+        [2, 'Somewhat clear'],
+        [3, 'Neither clear nor unclear'],
+        [4, 'Somewhat unclear'],
+        [5, 'Very unclear']
+    ],
+        verbose_name='How clear were the instructions to play the game?',
+        widget=widgets.RadioSelectHorizontal())
+
+    timing_instr = models.PositiveIntegerField(choices=[
+        [1, 'Very long'],
+        [2, 'Somewhat long'],
+        [3, 'Just right'],
+        [4, 'Somewhat short'],
+        [5, 'Very short'],
+    ],
+        verbose_name='How was the allocated timing to read the instructions? i.e. Did you have enough time to read the instructions before the page automatically forwards?',
+        widget=widgets.RadioSelectHorizontal())
+
+    timing_dec = models.PositiveIntegerField(choices=[
+        [1, 'Very fast'],
+        [2, 'Somewhat fast'],
+        [3, 'Just right'],
+        [4, 'Somewhat slow'],
+        [5, 'Very slow']
+    ],
+        verbose_name='How was the allocated timing for the decision making page? (The page each round that asks for your decision) i.e. Did you have enough time to make an informed decision before the page automatically forwards?',
+        widget=widgets.RadioSelectHorizontal())
+
+    timing_res = models.PositiveIntegerField(choices=[
+        [1, 'Very fast'],
+        [2, 'Somewhat fast'],
+        [3, 'Just right'],
+        [4, 'Somewhat slow'],
+        [5, 'Very slow']
+    ],
+        verbose_name='How was the allocated timing for the page displaying the results of the game? (The page that shows the outcome for each round) i.e. Did you have enough time to read the results of each round before the page automatically forwards?',
+        widget=widgets.RadioSelectHorizontal())
+
+    diff = models.PositiveIntegerField(choices=[
+        [1, 'Very easy'],
+        [2, 'Somewhat easy'],
+        [3, 'Neither easy nor difficult'],
+        [4, 'Somewhat difficult'],
+        [5, 'Very difficult']
+    ],
+        verbose_name='How easy was it to understand the goal of the game?',
+        widget=widgets.RadioSelectHorizontal())
+
+    comment = models.CharField(verbose_name='Please write any comments or suggestions about the game',
+                               widget=widgets.Textarea())
+
     def role(self):
         if self.id_in_group == 1:
             return 'attacker'

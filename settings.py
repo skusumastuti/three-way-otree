@@ -117,9 +117,15 @@ SESSION_CONFIGS = [
     },
     {
         'name': 't_w_g_du',
-       'display_name': "Three Way Game defender sees user",
+       'display_name': "Three Way Game (defender sees user)",
        'num_demo_participants': 3,
-       'app_sequence': ['t_w_g_du_intro'],
+       'app_sequence': ['t_w_g_du_intro','t_w_g_du'],
+    },
+    {
+        'name': 't_w_g_ud',
+       'display_name': "Three Way Game (user sees defender)",
+       'num_demo_participants': 3,
+       'app_sequence': ['t_w_g_ud_intro','t_w_g_ud'],
     }
 ]
 

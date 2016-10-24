@@ -27,6 +27,9 @@ class WaitIntroPage(WaitPage):
 
     wait_for_all_groups = True
 
+    def is_displayed(self):
+        return self.subsession.round_number == 1
+
 
 class AChoice(Page):
 
@@ -36,12 +39,14 @@ class AChoice(Page):
     form_model = models.Group
     form_fields = ['a_choice']
 
-    timeout_seconds = 60
+    timeout_seconds = 45
 
     def before_next_page(self):
         if self.timeout_happened:
             self.group.a_choice = random.choice(['Attack Defender','Attack User','No Attack'])
-            self.group.att_rand = True
+            self.group.a_skipped = True
+        else:
+            self.group.a_skipped = False
 
 
 class DChoice(Page):
@@ -52,12 +57,15 @@ class DChoice(Page):
     form_model = models.Group
     form_fields = ['d_choice']
 
-    timeout_seconds = 60
+    timeout_seconds = 45
 
     def before_next_page(self):
         if self.timeout_happened:
             self.group.d_choice = random.choice(['Standard Security','Enhanced Security'])
-            self.group.def_rand = True
+            self.group.d_skipped = True
+        else:
+            self.group.d_skipped = False
+
 
 class UWait(WaitPage):
     body_text = "Waiting for the defender to make a decision"
@@ -76,12 +84,14 @@ class UChoice(Page):
     form_model = models.Group
     form_fields = ['u_choice']
 
-    timeout_seconds = 60
+    timeout_seconds = 45
 
     def before_next_page(self):
         if self.timeout_happened:
             self.group.u_choice = random.choice(['Standard Security','Enhanced Security'])
-            self.group.user_rand = True
+            self.group.u_skipped = True
+        else:
+            self.group.u_skipped = False
 
 
 class ResultsWaitPage(WaitPage):
@@ -106,6 +116,7 @@ class Results(Page):
             'result': self.group.message,
             'payoff': self.player.payoff
         }
+
 
 class FinalResults(Page):
 
@@ -132,6 +143,15 @@ class FinalResults(Page):
     timeout_seconds = 120
 
 
+class Feedback(Page):
+
+    def is_displayed(self):
+        return self.subsession.round_number == Constants.num_rounds
+
+    form_model = models.Player
+    form_fields = ['turk_id','diff','clear','comment','timing_instr','timing_dec','timing_res']
+
+
 page_sequence = [
     AChoice,
     DChoice,
@@ -139,5 +159,6 @@ page_sequence = [
     UChoice,
     ResultsWaitPage,
     Results,
-    FinalResults
+    FinalResults,
+    Feedback
 ]

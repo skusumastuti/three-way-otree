@@ -1,0 +1,26 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Feedback
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.turk_id %}
+
+<P>We would like to have your feedback on this study</P>
+
+    {% formfield player.diff %}
+    {% formfield player.clear %}
+    {% formfield player.timing_instr %}
+    {% formfield player.timing_dec %}
+    {% formfield player.timing_res %}
+    {% formfield player.comment %}
+
+    <p>Thank you for participating in our study. Your completion code is Zxy9234J</p>
+
+    {% next_button %}
+
+{% endblock %}
+

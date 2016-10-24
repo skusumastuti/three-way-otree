@@ -1,0 +1,33 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Answer to Game Understanding Question
+{% endblock %}
+
+
+{% block content %}
+
+    <p>
+        The question was: In one round, attacker chooses to attack defender, defender chooses enhanced security, and user chooses standard security. The result is attack successful
+    </p>
+
+    <p>
+        You answered: {{ player.training }}
+    </p>
+
+<p class="text-danger">Your answer is incorrect. The correct answer is
+        {% if player.role == 'attacker' %}
+            {{ att_ans }}
+        {% elif player.role == 'defender' %}
+            {{ def_ans }}
+        {% elif player.role == 'user' %}
+            {{ user_ans }}
+        {% endif %}</p>
+
+<p>You are not qualified to play this game. You may exit the game</p>
+
+
+
+
+{% endblock %}
