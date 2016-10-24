@@ -2,12 +2,12 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Round {{ round_number }} of {{ total_rounds }}
+    Practice Round {{ round_number }} of {{ num_rounds }}
 {% endblock %}
 
 {% block content %}
 
-{% include 't_w_g_du/Uinstr.html' %}
+{% include Constants.u_instr %}
 
 <p>
     You are playing as <strong>{{ player.role }}</strong>.

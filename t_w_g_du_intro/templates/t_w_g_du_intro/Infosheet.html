@@ -1,0 +1,62 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Information Sheet
+{% endblock %}
+
+{% block content %}
+
+<script>
+new Notification("Three Way Cyber Security Game HIT is starting",{body:"Enough Mturks have accepted this HIT. Please return to the HIT to complete it."});
+</script>
+<audio autoplay><source src="{% static 't_w_g_intro/alarm.mp3' %}" type="audio/mpeg"></audio>
+<div style="font-size:20px">
+
+	<p><strong>University of Southern California<br>
+    CREATE</strong><br>
+    3710 McClintock Avenue, RTH 314<br>
+    Los Angeles, California 90089-2902<br></p>
+
+    <p><b>INFORMATION/FACTS SHEET FOR EXEMPT NON-MEDICAL RESEARCH</b></p>
+
+    <p><i>Multiplayer Computer Hacking Game</i></p>
+
+    <p>You are invited to participate in a research study conducted by Sarah Kusumastuti under the supervision of Dr. Richard John at the University of Southern California because you are an Amazon Mechanical Turk worker aged 18 and up. This study is funded by the National Science Foundation. Your participation is voluntary. You should read the information below, and ask questions about anything you do not understand, before deciding whether to participate. Please take as much time as you need to read the consent form. You may also decide to discuss participation with your family or friends. You can print out this form for your records.
+</p>
+
+    <p>PURPOSE OF THE STUDY<br>
+    You are invited to participate in a cyber attack game. By game, we mean that this is a simulation of a cyber attack and there is no actual information theft involved.</p>
+
+    <p>PARTICIPANT INVOLVEMENT<br>
+    We are asking you to play a cyber attack game. This game requires three people to participate and you may be randomly chosen to play an attacker, defender, or user. You will be playing against 2 other people in real time. If you are the attacker, your goal will be to successfully attack your targets, if you are a defender or user, your goal will be to protect yourself from an attack. The game will be preceded by 6 pages of instructions, two practice rounds to familiarize yourself with the game, and three training questions regarding the mechanics of the game after you have completed the practice rounds. You will then play 20 rounds of this game. This game will take 30-40 minutes to complete.</p>
+
+    <p>POTENTIAL RISKS AND DISCOMFORTS<br>
+    There are no anticipated risks involved in participating in the survey.</p>
+
+    <p>POTENTIAL BENEFITS TO PARTICIPANTS AND/OR TO SOCIETY<br>
+    There are no anticipated benefits to the participant. The anticipated benefits to society is the advancement of knowledge.</p>
+
+    <p>PAYMENT/COMPENSATION FOR PARTICIPATION<br>
+    All participant will be paid $1 for participating in the study. You will also be paid a bonus based on the payoff of 5 rounds that are picked randomly from the game. If your balance is more than $10, you will be paid $10. If your balance is less than $1, you will be paid $1 for your time.</p>
+
+    <p>CONFIDENTIALITY<br>
+    There will be no identifiable information obtained in connection with this study. Your name, address or other identifiable information will not be collected. The anonymous data will be maintained on a secure computer and retained at the discretion of the investigator. The members of the research team, the funding agency and the University of Southern Californiaӳ Human Subjects Protection Program (HSPP) may access the data. The HSPP reviews and monitors research studies to protect the rights and welfare of research subjects.</p>
+
+    <p>PARTICIPATION AND WITHDRAWAL<br>
+    Your participation is voluntary. Your refusal to participate will involve no penalty or loss of benefits to which you are otherwise entitled. You may withdraw your consent at any time and discontinue participation without penalty. You are not waiving any legal claims, rights or remedies because of your participation in this research study.</p>
+
+    <p>ALTERNATIVES TO PARTICIPATION <br>
+    Your alternative is to not participate. If you joined through Amazon Mechanical Turk, your option is to participate in a different HIT.</p>
+
+    <p>INVESTIGATOR CONTACT INFORMATION<br>
+    If you have any questions or concerns about the research, please feel free to contact: Sarah Kusumastuti (kusumast@usc.edu), Sule Guney (suleguney@gmail.com), or Richard John (richardj@usc.edu)</p>
+
+    <p>IRB CONTACT INFORMATION<br>
+    If you have questions, concerns, or complaints about your rights as a research participant or the research in general and are unable to contact the research team, or if you want to talk to someone independent of the research team, please contact the University Park Institutional Review Board (UPIRB), 3720 South Flower Street #301, Los Angeles, CA  90089-0702, (213) 821-5272 or upirb@usc.edu.</p>
+
+    {% formfield player.consent %}
+
+{% next_button %}
+
+{% endblock %}

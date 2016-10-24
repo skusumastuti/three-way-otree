@@ -119,7 +119,7 @@ SESSION_CONFIGS = [
         'name': 't_w_g_du',
        'display_name': "Three Way Game defender sees user",
        'num_demo_participants': 3,
-       'app_sequence': ['t_w_g_du'],
+       'app_sequence': ['t_w_g_du_intro'],
     }
 ]
 

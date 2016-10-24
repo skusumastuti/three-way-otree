@@ -1,0 +1,68 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Instructions - Page 2 of 6
+{% endblock %}
+
+{% block content %}
+
+    <p>{% if player.role == 'attacker' %}
+
+        In each round of the game, <u>you</u> will have three options:
+<ul>
+<li>You can choose to attack the <u>defender</u>, which will cost you {{acostd}}; or,</li>
+<li>You can choose to attack the <u>user</u>, which will cost you {{acostu}}; or,</li>
+<li>You can choose <u>not to attack</u> at all, which will cost you nothing.</li>
+</ul>
+</p>
+
+<p>
+Meanwhile, the <u>defender</u> can choose to have an <i>enhanced</i> security or a <i>standard</i>
+security against <u>you</u>. Likewise, the <u>user</u> can choose to have an <i>enhanced</i> security or a
+<i>standard</i> security against <u>you</u>.
+
+    {% elif player.role == 'defender' %}
+
+In the game, you will have two options:
+
+<ul>
+<li>You can choose to have an <i>enhanced</i> security against the <u>attacker</u>, which will
+cost you {{dcoste}}; or,</li>
+<li>You can choose to have a <i>standard</i> security against the <u>attacker</u>, which will
+cost you {{dcosts}}.</li>
+</ul>
+</p>
+
+<p>
+Likewise, the <u>user</u> can choose to have an <i>enhanced</i> security or a <i>standard</i> security
+against the <u>attacker</u>. Meanwhile, the <u>attacker</u> can choose to attack <u>you</u>, or the <u>user</u>,
+or <u>not attack</u> either of you.
+
+<p>You will be given the capability to know the choice made by the user to help your decision making process, therefore, you may only make a decision after the user have made theirs.
+
+
+    {% elif player.role == 'user' %}
+
+In the game, you will have two options:
+<ul>
+<li>You can choose to have an <i>enhanced</i> security against the <u>attacker</u>, which will
+cost you {{ucoste}}; or,</li>
+<li>You can choose to have a <i>standard</i> security against the <u>attacker</u>, which will
+cost you nothing.</li>
+</ul>
+
+<p>
+Likewise, the defender can choose to have an <i>enhanced</i> security or a <i>standard</i>
+security against the attacker. Meanwhile, the attacker can choose to attack <u>you</u>, or
+the <u>defender</u>, or <u>not attack</u> either of you.
+
+    <p>The defender is given the capability to see your choice after you have made the decision and may consider their strategy according to it. The defender can only make their choice after you made yours, so please be mindful that the progress of the game is affected by how long you need to make a decision.
+
+    {% endif %}
+    </p>
+
+
+    {% next_button %}
+
+{% endblock %}

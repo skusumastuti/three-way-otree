@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Results Summary
+    Summary of Results
 {% endblock %}
 
 {% block content %}
@@ -20,6 +20,7 @@
             <th>Outcome</th>
             <th>Cost</th>
             <th>Your Payoff</th>
+            <th>Skipped</th>
         </tr>
         {% for g in group_in_all_rounds %}
             <tr>
@@ -30,13 +31,14 @@
                 <td>{{ g.message }}</td>
                 <td>{% if player.role == 'attacker' %} {{g.a_cost}} {% elif player.role == 'defender' %} {{g.d_cost}} {% elif player.role == 'user' %} {{g.u_cost}} {% endif %}</td>
                 <td>{% if player.role == 'attacker' %} {{g.a_pay}} {% elif player.role == 'defender' %} {{g.d_pay}} {% elif player.role == 'user' %} {{g.u_pay}} {% endif %}</td>
+                <td>{% if player.role == 'attacker' %} {{g.a_skipped}} {% elif player.role == 'defender' %} {{g.d_skipped}} {% elif player.role == 'user' %} {{g.u_skipped}} {% endif %}</td>
                 {% endfor %}
 
             </tr>
 
     </table>
 
-    <p>These rounds are randomly selected to obtain your bonus:{% for round in paying_rounds %} {{round}}{% endfor %}. Your bonus is {% if player.role == 'attacker' %} {{a_total}}{% elif player.role == 'defender' %} {{d_total}}{% elif player.role == 'user' %} {{u_total}}{% endif %}. If you obtained less than $1, you will be paid $1 as your bonus.</p>
+    <p>These rounds are randomly selected to obtain your bonus:{% for round in paying_rounds %} {{round}}{% endfor %}. Your bonus is {% if player.role == 'attacker' %} {{a_total}}{% elif player.role == 'defender' %} {{d_total}}{% elif player.role == 'user' %} {{u_total}}{% endif %}. If you obtained less than $1, you will be paid $1 as your bonus. If you obtained more than $10, you will be paid $10 as your bonus.</p>
 
     {% next_button %}
 

@@ -1,0 +1,79 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Instructions - Page 3 of 6
+{% endblock %}
+
+{% block content %}
+
+    <p>{% if player.role == 'attacker' %}
+
+Your success will depend on what the other players choose to do.</p>
+
+<p>In case you choose to attack the <u>defender</u>:
+<ul>
+<li>Your probability of success will be <i>higher</i> when the <u>defender</u> has a <i>standard</i>
+level of security against you than when the <u>defender</u> has an <i>enhanced</i>
+security.</li>
+</ul>
+</p>
+
+<p>In case you choose to attack the <u>user</u>:
+<ul>
+<li>Your probability of success will be the <i>highest</i> when both the <u>user</u> and
+<u>defender</u> choose to have a <i>standard</i> security against you,</li>
+<li>Your probability of success will be the lowest when both the <u>user</u> and
+<u>defender</u> choose to have an <i>enhanced</i> security against you.</li>
+</ul>
+	
+    {% elif player.role == 'defender' %}
+
+	A successful attack by the <u>attacker</u> will depend on what <u>you</u> and the <u>user</u> choose to
+do.</p>
+
+<p>
+In case the <u>attacker</u> chooses to attack <u>you</u>:
+<ul>
+<li><u>Attacker</u>'s probability of success will be <i>higher</i> when <u>you</u> have a <i>standard</i>
+level of security than when you have an <i>enhanced</i> security.</li>
+</ul>
+</p>
+
+<p>
+    In case the <u>attacker</u> chooses to attack the user:
+<ul>
+    <li><u>Attacker</u>'s probability of success will be the <i>highest</i> when both the <u>user</u> and
+<u>you</u> choose to have a <i>standard</i> security;</li>
+<li><u>Attacker</u>'s probability of success will be the <i>lowest</i> when both the <u>user</u> and
+<u>you</u> choose to have an <i>enhanced</i> security.</li>
+</ul>
+
+    {% elif player.role == 'user' %}
+A successful attack by the <u>attacker</u> will depend on what <u>you</u> and the <u>defender</u>
+choose to do.</p>
+
+<p>
+In case the <u>attacker</u> chooses to attack <u>you</u>:
+<ul>
+    <li><u>Attacker</u>'s probability of success will be the <i>highest</i> when both the <u>defender</u>
+and you choose to have a <i>standard</i> security;</li>
+<li><u>Attacker</u>'s probability of success will be the <i>lowest</i> when both the <u>defender</u>
+and you choose to have an <i>enhanced</i> security.</li>
+    </ul>
+</p>
+
+<p>
+In case the <u>attacker</u> chooses to attack the <u>defender</u>:
+    <ul>
+<li><u>Attacker</u>'s probability of success will be <i>higher</i> when the <u>defender</u> has a
+<i>standard</i> level of security than when the <u>defender</u> has an <i>enhanced</i> security.</li>
+    </ul>
+	
+
+    {% endif %}
+    </p>
+
+    {% next_button %}
+
+{% endblock %}
