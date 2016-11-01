@@ -111,19 +111,19 @@ SESSION_CONFIG_DEFAULTS = {
 SESSION_CONFIGS = [
     {
         'name': 'three_way',
-       'display_name': "Three Way Cyber Security Game",
+       'display_name': "Multiplayer Cyber Security Game",
        'num_demo_participants': 3,
        'app_sequence': ['t_w_g_intro','t_w_g'],
     },
     {
         'name': 't_w_g_du',
-       'display_name': "Three Way Game (defender sees user)",
+       'display_name': "Multiplayer Cyber Security Game (defender sees user)",
        'num_demo_participants': 3,
        'app_sequence': ['t_w_g_du_intro','t_w_g_du'],
     },
     {
         'name': 't_w_g_ud',
-       'display_name': "Three Way Game (user sees defender)",
+       'display_name': "Multiplayer Cyber Security Game (user sees defender)",
        'num_demo_participants': 3,
        'app_sequence': ['t_w_g_ud_intro','t_w_g_ud'],
     }
