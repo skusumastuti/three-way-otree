@@ -7,6 +7,10 @@
 
 {% block content %}
 
+<p>To test your understanding of the game, please answer the following question</p>
+
+{% formfield player.training1 with label='What is your role in this game?' %}
+
         <p>{% if player.role == 'attacker' %}
             {% include 't_w_g_intro/Ainstr.html' %}
         {% elif player.role == 'defender' %}
@@ -15,11 +19,6 @@
             {% include 't_w_g_intro/Uinstr.html' %}
         {% endif %}
         </p>
-
-<p>To test your understanding of the game, please answer the following question</p>
-
-{% formfield player.training1 with label='What is your role in this game?' %}
-
 
     {% next_button %}
 

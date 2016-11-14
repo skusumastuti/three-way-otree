@@ -7,7 +7,8 @@
 
 {% block content %}
     <p>
-        The question was: What is your role in this game?
+        The question was: {% if player.role == 'attacker' %}Your probability of success is highest in which of these following scenarios:
+    {% else %} Attacker probability of success is highest in which of these following scenarios: {% endif %}
     </p>
 
     <p>

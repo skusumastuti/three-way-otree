@@ -7,6 +7,10 @@
 
 {% block content %}
 
+<p>To test your understanding of the game, please answer the following question</p>
+
+{% formfield player.training4 with label='Which of the following outcomes will offer you the highest monetary reward?' %}
+
         <p>{% if player.role == 'attacker' %}
             {% include 't_w_g_intro/Ainstr.html' %}
         {% elif player.role == 'defender' %}
@@ -15,10 +19,6 @@
             {% include 't_w_g_intro/Uinstr.html' %}
         {% endif %}
         </p>
-
-<p>To test your understanding of the game, please answer the following question</p>
-
-{% formfield player.training4 with label='Which of the following outcomes will offer you the highest monetary reward?' %}
 
 
     {% next_button %}
