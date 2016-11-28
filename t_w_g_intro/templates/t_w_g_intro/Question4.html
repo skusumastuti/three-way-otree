@@ -11,15 +11,6 @@
 
 {% formfield player.training4 with label='Which of the following outcomes will offer you the highest monetary reward?' %}
 
-        <p>{% if player.role == 'attacker' %}
-            {% include 't_w_g_intro/Ainstr.html' %}
-        {% elif player.role == 'defender' %}
-            {% include 't_w_g_intro/Dinstr.html' %}
-        {% elif player.role == 'user' %}
-            {% include 't_w_g_intro/Uinstr.html' %}
-        {% endif %}
-        </p>
-
 
     {% next_button %}
 

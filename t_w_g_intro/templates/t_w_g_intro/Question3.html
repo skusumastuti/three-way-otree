@@ -16,15 +16,6 @@
 {% formfield player.training3 with label='Attacker probability of success is highest in which of these following scenarios:' %}
     {% endif %}
 
-        <p>{% if player.role == 'attacker' %}
-            {% include 't_w_g_intro/Ainstr.html' %}
-        {% elif player.role == 'defender' %}
-            {% include 't_w_g_intro/Dinstr.html' %}
-        {% elif player.role == 'user' %}
-            {% include 't_w_g_intro/Uinstr.html' %}
-        {% endif %}
-        </p>
-
     {% next_button %}
 
 {% endblock %}
