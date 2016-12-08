@@ -84,8 +84,7 @@ class No(Page):
 class Introduction1(Page):
 
     def is_displayed(self):
-        return {self.subsession.round_number == 1,
-                self.player.consent == 'I have read the above information, am 18 years of age or older, and I wish to continue with the game.'}
+        return self.subsession.round_number == 1
 
     timeout_seconds = 60
 
