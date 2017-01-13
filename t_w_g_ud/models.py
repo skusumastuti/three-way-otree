@@ -26,6 +26,7 @@ class Constants(BaseConstants):
     paid_rounds = 3
     participation = 1
     minimal_bonus = 1
+    max_bonus = 7
 
     U_SProb_UHDH = .2
     U_SProb_ULDH = .4

@@ -38,7 +38,7 @@
 
     </table>
 
-    <p>These rounds are randomly selected to obtain your bonus:{% for round in paying_rounds %} {{round}}{% endfor %}. Your bonus is {% if player.role == 'attacker' %} {{a_total}}{% elif player.role == 'defender' %} {{d_total}}{% elif player.role == 'user' %} {{u_total}}{% endif %}. You do not receive the payoff of a round you skipped. If you obtained less than $1, you will be paid $1 as your bonus. If you obtained more than $10, you will be paid $10 as your bonus.</p>
+    <p>These rounds are randomly selected to obtain your bonus:{% for round in paying_rounds %} {{round}}{% endfor %}. Your bonus is {% if player.role == 'attacker' %} {{a_total}}{% elif player.role == 'defender' %} {{d_total}}{% elif player.role == 'user' %} {{u_total}}{% endif %}. You do not receive the payoff of a round you skipped. If you obtained less than $1, you will be paid $1 as your bonus. If you obtained more than {{max_bonus}}, you will be paid {{max_bonus}} as your bonus.</p>
 
     {% next_button %}
 

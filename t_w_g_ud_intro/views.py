@@ -349,9 +349,9 @@ class Answer4(Page):
 
 
 page_sequence = [
-    CustomWait,
     Infosheet,
     No,
+    CustomWait,
     Introduction1,
     Introduction2,
     Introduction3,

@@ -16,6 +16,7 @@ def vars_for_all_templates(self):
             'round_number': self.subsession.round_number,
             'player.role': self.player.role(),
             'minimal_bonus': Constants.minimal_bonus,
+            'max_bonus': Constants.max_bonus,
             'paid_rounds': Constants.paid_rounds,
             'participation': Constants.participation,
             'game_rounds': Constants.game_rounds,
