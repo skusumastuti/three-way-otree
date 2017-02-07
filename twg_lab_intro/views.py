@@ -67,7 +67,7 @@ class CustomWait(WaitPage):
 
 class Infosheet(Page):
 
-    template_name = "t_w_g_intro/Infosheet.html"
+    template_name = "twg_lab_intro/Infosheet.html"
 
     def is_displayed(self):
         return self.subsession.round_number == 1
