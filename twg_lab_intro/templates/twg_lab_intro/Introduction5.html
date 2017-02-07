@@ -1,0 +1,24 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Introduction - Page 5 of 6
+{% endblock %}
+
+{% block content %}
+
+	<p>
+        You will be provided with a table which will include all the relevant information
+
+regarding your options, and associated costs, probabilities of success, and potential
+
+payoffs. The table will remain available to you on all subsequent screens for your
+
+convenience. The next page provides a brief explanation of how to read the table.</p>
+
+<p>There are {{game_rounds}} rounds in this game. All participant will be rewarded 1.5 credits for participating in the study. There will be no monetary reward obtained from this study, but if you obtain the highest reward among the three players in the game, you will be entered for a chance to receive a $25 Amazon gift card. Before you play the game there will be {{num_rounds}} practice rounds for you to play so that you can familiarize yourself with the game. After the practice rounds you will be presented with a question that tests your understanding of the game.</p>
+<p>You are given 45 seconds to make a decision for each round. If you do not make a decision within the time limit, a choice will be randomly generated for you.</p>
+
+    {% next_button %}
+
+{% endblock %}

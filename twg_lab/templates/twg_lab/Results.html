@@ -1,0 +1,35 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Round {{round_number}} Results
+{% endblock %}
+
+{% block content %}
+
+<p>
+        You played as {{ player.role }}
+    </p>
+
+        <p>Attacker action: {{ a_choice }}<br>
+        Defender action: {{ d_choice }}<br>
+        User action: {{ u_choice }}</p>
+
+    The result is {{ result }}
+
+    <p>{% if player.role == 'attacker' %}
+        Your action cost you {{ acost }}<br>
+        Your payoff is {{ payoff }}
+    {% elif player.role == 'defender' %}
+        Your action cost you {{ dcost }}<br>
+        Your payoff is {{ payoff }}
+    {% elif player.role == 'user' %}
+        Your action cost you {{ ucost }}<br>
+        Your payoff is {{ payoff }}
+    {% endif %}
+    </p>
+
+    {% next_button %}
+{% endblock %}
+
+

@@ -1,0 +1,20 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Introduction
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        {% include 'twg_lab/Uinstr.html' %}
+    </p>
+
+    <p>There are {{total_rounds}} rounds in this game. You will receive 1.5 credits for your participation of this game. If you scored the highest between the 3 players in this game, you will be entered for a chance to win a $25 Amazon gift card.</p>
+
+<p>Click the next button below to start the game</p>
+
+    {% next_button %}
+
+{% endblock %}

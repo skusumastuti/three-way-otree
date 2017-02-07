@@ -107,6 +107,14 @@ SESSION_CONFIG_DEFAULTS = {
     'mturk_hit_settings': mturk_hit_settings,
 }
 
+ROOM_DEFAULTS = {}
+
+ROOMS = [
+    {
+        'name': 'psyc_lab',
+        'display_name': 'Experimental Psychology Lab',
+    }
+]
 
 SESSION_CONFIGS = [
     {
@@ -126,6 +134,12 @@ SESSION_CONFIGS = [
        'display_name': "Multiplayer Cyber Security Game (user sees defender)",
        'num_demo_participants': 3,
        'app_sequence': ['t_w_g_ud_intro','t_w_g_ud'],
+    },
+    {
+        'name': 'twg_lab',
+       'display_name': "Multiplayer Cyber Security Game (lab edition)",
+       'num_demo_participants': 3,
+       'app_sequence': ['twg_lab_intro','twg_lab'],
     }
 ]
 

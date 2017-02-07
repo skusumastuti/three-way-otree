@@ -1,0 +1,29 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Instructions - Page 1 of 6
+{% endblock %}
+
+
+{% block content %}
+
+
+
+		<p>You are participating in a three player interactive cyber security game with
+
+attackers, defenders and users. You will be playing in real time against other online
+
+participants. You have been randomly chosen to play as the <strong>{{player.role}}</strong>.
+
+Please read the following instructions carefully because you will be taking a quiz
+
+measuring how well you understand the instructions right after.</p>
+
+
+
+
+
+    {% next_button %}
+
+{% endblock %}

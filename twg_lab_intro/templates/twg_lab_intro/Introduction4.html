@@ -1,0 +1,47 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Instructions - Page 4 of 6
+{% endblock %}
+
+{% block content %}
+
+
+    <p>{% if player.role == 'attacker' %}
+
+
+You will <b>win {{adefs}}</b> if your attack is successful against the <u>defender</u>; and <b>lose {{adeff}}</b> if it
+fails.</p>
+
+<p>You will <b>win {{ausers}}</b> if your attack is successful against the <u>user</u>; and <b>lose nothing</b> if it
+
+fails.</p>
+
+<p>There is <b>no payoff</b> for not attacking.
+
+    {% elif player.role == 'defender' %}
+
+You will <b>win {{ddeff}}</b> if the attack against you fails; and <b>lose {{ddefs}}</b> if it is successful.</p>
+
+<p>You will <b>win {{duserf}}</b> if the attack against the user fails; and <b>lose {{dusers}}</b> if it is successful.</p>
+
+<p>You will <b>win {{dno}}</b> if there is no attack.</p>
+
+    {% elif player.role == 'user' %}
+
+You will <b>win {{uuserf}}</b> if the attack against you fails; and <b>lose {{uusers}}</b> if it is successful.</p>
+
+<p>You will <b>win {{uno}}</b> if there is no attack.</p>
+
+<p>You will <b>not win or lose anything</b> if the attack against the defender fails or is
+
+successful.
+
+    {% endif %}
+    </p>
+
+
+    {% next_button %}
+
+{% endblock %}

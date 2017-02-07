@@ -1,0 +1,16 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Game Understanding Question 1 of 3
+{% endblock %}
+
+{% block content %}
+
+<p>To test your understanding of the game, please answer the following question</p>
+
+{% formfield player.training1 with label='What is your role in this game?' %}
+
+    {% next_button %}
+
+{% endblock %}

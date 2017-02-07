@@ -1,0 +1,21 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Game Understanding Question 2 of 4
+{% endblock %}
+
+{% block content %}
+
+        <p>
+            {% include 'twg_intro_ud/Dinstr.html' %}
+        </p>
+
+<p>To test your understanding of the game, please answer the following question</p>
+
+{% formfield player.training2d with label='Which of the following actions is more costly to start with?' %}
+
+
+    {% next_button %}
+
+{% endblock %}
