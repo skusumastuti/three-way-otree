@@ -20,7 +20,6 @@
             <th>Outcome</th>
             <th>Cost</th>
             <th>Your Payoff</th>
-            <th>Skipped</th>
         </tr>
         {% for g in group_in_all_rounds %}
             <tr>
@@ -31,14 +30,13 @@
                 <td>{{ g.message }}</td>
                 <td>{% if player.role == 'attacker' %} {{g.a_cost}} {% elif player.role == 'defender' %} {{g.d_cost}} {% elif player.role == 'user' %} {{g.u_cost}} {% endif %}</td>
                 <td>{% if player.role == 'attacker' %} {{g.a_pay}} {% elif player.role == 'defender' %} {{g.d_pay}} {% elif player.role == 'user' %} {{g.u_pay}} {% endif %}</td>
-                <td>{% if player.role == 'attacker' %} {{g.a_skipped}} {% elif player.role == 'defender' %} {{g.d_skipped}} {% elif player.role == 'user' %} {{g.u_skipped}} {% endif %}</td>
                 {% endfor %}
 
             </tr>
 
     </table>
 
-    <p>Your total payoff is //</p>
+    <p>Your total payoff is {% if player.role == 'attacker' %} {{a_total}} {% elif player.role == 'defender' %} {{d_total}} {% elif player.role == 'user' %} {{u_total}} {% endif %}</p>
 
     {% next_button %}
 

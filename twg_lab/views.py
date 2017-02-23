@@ -17,7 +17,6 @@ def vars_for_all_templates(self):
             'role': self.player.role(),
             'minimal_bonus': Constants.minimal_bonus,
             'max_bonus': Constants.max_bonus,
-            'paid_rounds': Constants.paid_rounds,
             'participation': Constants.participation,
             }
 
@@ -121,17 +120,16 @@ class FinalResults(Page):
         player_in_all_rounds = self.player.in_all_rounds()
         group_in_all_rounds = self.group.in_all_rounds()
 
-        a_total = sum([g.a_cum for g in self.group.in_all_rounds()])
-        d_total = sum([g.d_cum for g in self.group.in_all_rounds()])
-        u_total = sum([g.u_cum for g in self.group.in_all_rounds()])
+        a_total = sum([g.a_pay for g in self.group.in_all_rounds()])
+        d_total = sum([g.d_pay for g in self.group.in_all_rounds()])
+        u_total = sum([g.u_pay for g in self.group.in_all_rounds()])
 
         return {
             'player_in_all_rounds': player_in_all_rounds,
             'group_in_all_rounds': group_in_all_rounds,
             'a_total': a_total,
             'd_total': d_total,
-            'u_total': u_total,
-            'paying_rounds': self.session.vars['paying_rounds']
+            'u_total': u_total
         }
 
     timeout_seconds = 120
@@ -143,7 +141,7 @@ class Feedback(Page):
         return self.subsession.round_number == Constants.num_rounds
 
     form_model = models.Player
-    form_fields = ['turk_id','diff','clear','comment','timing_instr','timing_dec','timing_res']
+    form_fields = ['email','diff','clear','comment','timing_instr','timing_dec','timing_res']
 
 page_sequence = [
     AChoice,

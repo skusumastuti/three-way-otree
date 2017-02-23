@@ -23,7 +23,6 @@ class Constants(BaseConstants):
     name_in_url = 'twg_lab'
     players_per_group = 3
     num_rounds = 20
-    paid_rounds = 5
     participation = 1
     minimal_bonus = 1
     max_bonus = 7
@@ -60,9 +59,9 @@ class Constants(BaseConstants):
     UCostHS = c(1.4)
     UCostLS = c(0)
 
-    a_instr = 't_w_g/Ainstr.html'
-    d_instr = 't_w_g/Dinstr.html'
-    u_instr = 't_w_g/Uinstr.html'
+    a_instr = 'twg_lab/Ainstr.html'
+    d_instr = 'twg_lab/Dinstr.html'
+    u_instr = 'twg_lab/Uinstr.html'
 
     success_msg = 'attack successful'
     fail_msg = 'attack failed'
@@ -74,12 +73,7 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-
-    def before_session_starts(self):
-        if self.round_number == 1:
-            paying_rounds = random.sample(range(1,Constants.num_rounds), Constants.paid_rounds)
-            self.session.vars['paying_rounds'] = paying_rounds
-
+	pass
 
 class Group(BaseGroup):
 
@@ -212,7 +206,7 @@ class Group(BaseGroup):
         self.a_pay = attacker.payoff
         self.d_pay = defender.payoff
         self.u_pay = user.payoff
-
+""""
         if self.subsession.round_number in self.session.vars['paying_rounds']:
             if self.a_skipped:
                 self.a_cum = 0
@@ -230,11 +224,13 @@ class Group(BaseGroup):
             self.a_cum = 0
             self.d_cum = 0
             self.u_cum = 0
-
+"""
 
 class Player(BasePlayer):
 
     turk_id = models.CharField(verbose_name='Please enter your Mechanical Turk ID', widget=widgets.TextInput())
+
+    email = models.CharField(verbose_name='Please enter the e-mail address where we can send you the reward should you obtain the highest score across all the groups', widget=widgets.TextInput())
 
     clear = models.PositiveIntegerField(choices=[
         [1,'Very clear'],
