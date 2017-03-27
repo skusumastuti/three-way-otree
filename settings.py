@@ -140,7 +140,14 @@ SESSION_CONFIGS = [
        'display_name': "Multiplayer Cyber Security Game (lab edition)",
        'num_demo_participants': 3,
        'app_sequence': ['twg_lab_intro','twg_lab'],
+    },
+	{
+        'name': 'du_lab',
+       'display_name': "Multiplayer Cyber Security Game (lab edition) #2",
+       'num_demo_participants': 3,
+       'app_sequence': ['twg_lab_du_intro','twg_lab_du'],
     }
+	
 ]
 
 SENTRY_DSN = 'http://2d6afe71fd4440c0ae5654b11d293d28:15508aeee1a6412aafa064f8d03e65a5@sentry.otree.org/35'

@@ -20,7 +20,7 @@ Behavioral cyber 3 way game
 
 
 class Constants(BaseConstants):
-    name_in_url = 't_w_g_du'
+    name_in_url = 'twg_lab_du'
     players_per_group = 3
     num_rounds = 20
     paid_rounds = 5

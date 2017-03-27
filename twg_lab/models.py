@@ -232,6 +232,8 @@ class Player(BasePlayer):
 
     email = models.CharField(verbose_name='Please enter the e-mail address where we can send you the reward should you obtain the highest score across all the groups', widget=widgets.TextInput())
 
+
+	#feedback stuff
     clear = models.PositiveIntegerField(choices=[
         [1,'Very clear'],
         [2,'Somewhat clear'],

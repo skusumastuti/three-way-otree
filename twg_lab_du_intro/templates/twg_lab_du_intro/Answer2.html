@@ -1,0 +1,34 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Answer to Game Understanding Question 2 of 4
+{% endblock %}
+
+{% block content %}
+    <p>
+        The question was: Which of the following actions is more costly to start with?
+    </p>
+
+    <p>
+        You answered: {% if player.role == 'attacker' %} {{ player.training2a }} {% else %} {{ player.training2du }} {% endif %}
+    </p>
+
+    {% if player.is_training2_correct %}
+        <p class="text-success">Your answer is correct.</p>
+
+    {% else %}
+        <p class="text-danger">Your answer is incorrect. The correct answer is
+        {% if player.role == 'attacker' %}
+            {{ att_ans }}
+        {% elif player.role == 'defender' %}
+            {{ def_ans }}
+        {% elif player.role == 'user' %}
+            {{ user_ans }}
+        {% endif %}</p>
+
+    {% endif %}
+
+    {% next_button %}
+
+{% endblock %}

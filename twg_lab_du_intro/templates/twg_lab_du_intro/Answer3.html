@@ -1,0 +1,35 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Answer to Game Understanding Question 2 of 3
+{% endblock %}
+
+{% block content %}
+    <p>
+        The question was: {% if player.role == 'attacker' %}Your probability of success is highest in which of these following scenarios:
+    {% else %} Attacker probability of success is highest in which of these following scenarios: {% endif %}
+    </p>
+
+    <p>
+        You answered: {{ player.training3 }}
+    </p>
+
+    {% if player.is_training3_correct %}
+        <p class="text-success">Your answer is correct.</p>
+
+    {% else %}
+        <p class="text-danger">Your answer is incorrect. The correct answer is
+        {% if player.role == 'attacker' %}
+            {{ att_ans }}
+        {% elif player.role == 'defender' %}
+            {{ def_ans }}
+        {% elif player.role == 'user' %}
+            {{ user_ans }}
+        {% endif %}</p>
+
+    {% endif %}
+
+    {% next_button %}
+
+{% endblock %}

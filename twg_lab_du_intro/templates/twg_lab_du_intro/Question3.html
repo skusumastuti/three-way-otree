@@ -1,0 +1,21 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Game Understanding Question 2 of 3
+{% endblock %}
+
+{% block content %}
+
+
+<p>To test your understanding of the game, please answer the following question</p>
+
+{% if player.role == 'attacker' %}
+{% formfield player.training3 with label='Your probability of success is highest in which of these following scenarios:' %}
+    {% else %}
+{% formfield player.training3 with label='Attacker probability of success is highest in which of these following scenarios:' %}
+    {% endif %}
+
+    {% next_button %}
+
+{% endblock %}
