@@ -231,6 +231,8 @@ class Player(BasePlayer):
 
     turk_id = models.CharField(verbose_name='Please enter your Mechanical Turk ID', widget=widgets.TextInput())
 
+    email = models.CharField(verbose_name='Please enter the e-mail address where we can send you the reward should you obtain the highest score across all the groups', widget=widgets.TextInput())
+	
     clear = models.PositiveIntegerField(choices=[
         [1,'Very clear'],
         [2,'Somewhat clear'],

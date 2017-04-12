@@ -16,6 +16,7 @@ def vars_for_all_templates(self):
             'round_number': self.subsession.round_number,
             'role': self.player.role(),
             'minimal_bonus': Constants.minimal_bonus,
+			'max_bonus': Constants.max_bonus,
             'paid_rounds': Constants.paid_rounds,
             'participation': Constants.participation,
             }
@@ -68,6 +69,10 @@ class DChoice(Page):
 
 
 class UWait(WaitPage):
+
+    def is_displayed(self):
+        return self.player.role() == 'user'
+
     body_text = "Waiting for the defender to make a decision"
 
 
@@ -103,6 +108,8 @@ class ResultsWaitPage(WaitPage):
 
 
 class Results(Page):
+
+    timeout_seconds = 30	
 
     def vars_for_template(self):
 

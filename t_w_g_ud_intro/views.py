@@ -17,6 +17,7 @@ def vars_for_all_templates(self):
             'player.role': self.player.role(),
             'minimal_bonus': Constants.minimal_bonus,
             'paid_rounds': Constants.paid_rounds,
+			'max_bonus': Constants.max_bonus,
             'participation': Constants.participation,
             'game_rounds': Constants.game_rounds,
             'adefs': Constants.APayoff_DefS,
@@ -53,7 +54,7 @@ class WaitIntroPage(WaitPage):
 
 class CustomWait(WaitPage):
 
-    template_name = "t_w_g_du_intro/CustomWait.html"
+    template_name = "t_w_g_ud_intro/CustomWait.html"
 
     def vars_for_template(self):
         return { "alt_title_text":"Please wait while other participants arrive. Once enough have accepted the HIT, a chime will sound if you have autoplay enabled for audio. If you would like a browser notification when it is time to begin, please granted this site permission to send you a notification.",
@@ -66,7 +67,7 @@ class CustomWait(WaitPage):
 
 class Infosheet(Page):
 
-    template_name = "t_w_g_du_intro/Infosheet.html"
+    template_name = "t_w_g_ud_intro/Infosheet.html"
 
     def is_displayed(self):
         return self.subsession.round_number == 1
@@ -84,8 +85,7 @@ class No(Page):
 class Introduction1(Page):
 
     def is_displayed(self):
-        return {self.subsession.round_number == 1,
-                self.player.consent == 'I have read the above information, am 18 years of age or older, and I wish to continue with the game.'}
+        return self.subsession.round_number == 1
 
     timeout_seconds = 60
 
@@ -167,6 +167,10 @@ class DChoice(Page):
 
 
 class UWait(WaitPage):
+
+    def is_displayed(self):
+        return self.player.role() == 'user'
+
     body_text = "Waiting for the defender to make a decision"
 
 
@@ -221,7 +225,7 @@ class Results(Page):
 
 class Question(Page):
 
-    template_name = 't_w_g_du_intro/Question.html'
+    template_name = 't_w_g_ud_intro/Question.html'
 
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
@@ -234,7 +238,7 @@ class Question(Page):
 
 class Answer(Page):
 
-    template_name = 't_w_g_du_intro/Answer.html'
+    template_name = 't_w_g_ud_intro/Answer.html'
 
     def vars_for_template(self):
         return {
@@ -253,7 +257,7 @@ class Answer(Page):
 
 class Question2(Page):
 
-    template_name = 't_w_g_du_intro/Question2.html'
+    template_name = 't_w_g_ud_intro/Question2.html'
 
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
@@ -266,7 +270,7 @@ class Question2(Page):
 
 class Answer2(Page):
 
-    template_name = 't_w_g_du_intro/Answer2.html'
+    template_name = 't_w_g_ud_intro/Answer2.html'
 
     def vars_for_template(self):
         return {
@@ -286,7 +290,7 @@ class Answer2(Page):
 
 class Question3(Page):
 
-    template_name = 't_w_g_du_intro/Question3.html'
+    template_name = 't_w_g_ud_intro/Question3.html'
 
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
@@ -299,7 +303,7 @@ class Question3(Page):
 
 class Answer3(Page):
 
-    template_name = 't_w_g_du_intro/Answer3.html'
+    template_name = 't_w_g_ud_intro/Answer3.html'
 
     def vars_for_template(self):
         return {
@@ -318,7 +322,7 @@ class Answer3(Page):
 
 class Question4(Page):
 
-    template_name = 't_w_g_du_intro/Question4.html'
+    template_name = 't_w_g_ud_intro/Question4.html'
 
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
@@ -331,7 +335,7 @@ class Question4(Page):
 
 class Answer4(Page):
 
-    template_name = 't_w_g_du_intro/Answer4.html'
+    template_name = 't_w_g_ud_intro/Answer4.html'
 
     def vars_for_template(self):
         return {
@@ -358,9 +362,9 @@ page_sequence = [
     Introduction4,
     Introduction5,
     Introduction6,
-    AChoice,
+	AChoice,
     DChoice,
-    UWait,
+	UWait,
     UChoice,
     ResultsWaitPage,
     Results,

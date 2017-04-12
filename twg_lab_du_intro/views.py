@@ -49,7 +49,7 @@ class WaitIntroPage(WaitPage):
 
 class Infosheet(Page):
 
-    template_name = "twg_lab_intro/Infosheet.html"
+    template_name = "twg_lab_du_intro/Infosheet.html"
 
     def is_displayed(self):
         return self.subsession.round_number == 1
@@ -203,7 +203,7 @@ class Results(Page):
 
 class Question(Page):
 
-    template_name = 'twg_lab_intro/Question.html'
+    template_name = 'twg_lab_du_intro/Question.html'
 
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
@@ -216,7 +216,7 @@ class Question(Page):
 
 class Answer(Page):
 
-    template_name = 'twg_lab_intro/Answer.html'
+    template_name = 'twg_lab_du_intro/Answer.html'
 
     def vars_for_template(self):
         return {
@@ -235,7 +235,7 @@ class Answer(Page):
 
 class Question2(Page):
 
-    template_name = 'twg_lab_intro/Question2.html'
+    template_name = 'twg_lab_du_intro/Question2.html'
 
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
@@ -248,7 +248,7 @@ class Question2(Page):
 
 class Answer2(Page):
 
-    template_name = 'twg_lab_intro/Answer2.html'
+    template_name = 'twg_lab_du_intro/Answer2.html'
 
     def vars_for_template(self):
         return {
@@ -268,7 +268,7 @@ class Answer2(Page):
 
 class Question3(Page):
 
-    template_name = 'twg_lab_intro/Question3.html'
+    template_name = 'twg_lab_du_intro/Question3.html'
 
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
@@ -281,7 +281,7 @@ class Question3(Page):
 
 class Answer3(Page):
 
-    template_name = 'twg_lab_intro/Answer3.html'
+    template_name = 'twg_lab_du_intro/Answer3.html'
 
     def vars_for_template(self):
         return {
@@ -300,7 +300,7 @@ class Answer3(Page):
 
 class Question4(Page):
 
-    template_name = 'twg_lab_intro/Question4.html'
+    template_name = 'twg_lab_du_intro/Question4.html'
 
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
@@ -313,7 +313,7 @@ class Question4(Page):
 
 class Answer4(Page):
 
-    template_name = 'twg_lab_intro/Answer4.html'
+    template_name = 'twg_lab_du_intro/Answer4.html'
 
     def vars_for_template(self):
         return {

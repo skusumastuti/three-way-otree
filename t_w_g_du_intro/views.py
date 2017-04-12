@@ -358,8 +358,6 @@ page_sequence = [
     Introduction4,
     Introduction5,
     Introduction6,
-    DWait,
-    DChoice,
     AChoice,
     UChoice,
     DWait,
