@@ -22,8 +22,8 @@ Behavioral cyber 3 way game
 class Constants(BaseConstants):
     name_in_url = 't_w_g_ud'
     players_per_group = 3
-    num_rounds = 5
-    paid_rounds = 3
+    num_rounds = 20
+    paid_rounds = 5
     participation = 1
     minimal_bonus = 1
     max_bonus = 7
